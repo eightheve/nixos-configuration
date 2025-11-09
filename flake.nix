@@ -3,11 +3,22 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nix-colors.url = "github:misterio77/nix-colors";
-    gtk-nix.url = "github:the-argus/gtk-nix";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-colors.url = "github:misterio77/nix-colors";
+    gtk-nix.url = "github:the-argus/gtk-nix";
+    flake-utils.url = "github:numtide/flake-utils";
+    linger = {
+      url = "github:mindsbackyard/linger-flake";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+    pihole = {
+      url = "github:mindsbackyard/pihole-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.linger.follows = "linger";
     };
     vintagestory-nix = {
       url = "github:PierreBorine/vintagestory-nix";
@@ -18,6 +29,8 @@
   outputs = {
     nixpkgs,
     gtk-nix,
+    linger,
+    pihole,
     nix-colors,
     home-manager,
     vintagestory-nix,
@@ -94,6 +107,10 @@
           ./common.nix
           ./hosts/SAOTOME
 
+          linger.nixosModules.x86_64-linux.default
+          pihole.nixosModules.x86_64-linux.default
+
+          ./modules/pihole.nix
           ./modules/nixos/wireguard/saotome+kazooie/saotome.nix
 
           ./users/sana

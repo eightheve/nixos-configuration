@@ -1,8 +1,6 @@
-{
-  imports = [
-    ./hardware.nix
-  ];
+{ ... }:
 
+{
   boot.loader.grub = {
     enable = true;
     device = "/dev/disk/by-id/wwn-0x50000000000029e4";
@@ -21,18 +19,21 @@
     };
   };
 
+  time.timeZone = "America/New_York";
+  i18n.defaultLocale = "en_US.UTF-8";
+
   boot.swraid = {
     enable = true;
     mdadmConf = ''
       MAILADDR root
-      ARRAY /dev/md0 level=5 num-devices=15 metadata=1.2 UUID=c1aaf920:0dc7a83f:2f77a095:7f43bfb0 devices=/dev/disk/by-id/wwn-0x5000c500958dac3f,/dev/disk/by-id/wwn-0x5000c500958dd1eb,/dev/disk/by-id/wwn-0x5000c500958ee307,/dev/disk/by-id/wwn-0x5000c500958f73e3,/dev/disk/by-id/wwn-0x5000c5009614bcfb,/dev/disk/by-id/wwn-0x5000c500965407d7,/dev/disk/by-id/wwn-0x5000c5009655c9a3,/dev/disk/by-id/wwn-0x5000c50096601f2f,/dev/disk/by-id/wwn-0x5000c50096603f77,/dev/disk/by-id/wwn-0x5000c50096637acf,/dev/disk/by-id/wwn-0x5000c500966cebe7,/dev/disk/by-id/wwn-0x5000c500967e301b,/dev/disk/by-id/wwn-0x5000c50096bbb1f7,/dev/disk/by-id/wwn-0x5000c50096cedc0b,/dev/disk/by-id/wwn-0x5000c50096d886cf
+      DEVICE /dev/disk/by-id/wwn-0x5000c*
+      ARRAY /dev/md0 level=5 num-devices=15 metadata=1.2 UUID=3486501f:98659bf6:1ed0661e:d875767d
     '';
   };
 
-  fileSystems."/srv/raid" = {
-    device = "/dev/md0";
-    fsType = "ext4";
-  };
+  services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = false;
+  networking.firewall.enable = false;
 
   system.stateVersion = "25.05"; # Did you read the comment?
 }
