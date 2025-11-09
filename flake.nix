@@ -88,11 +88,11 @@
         ];
       };
 
-      saotome = nixpkgs.lib.nixosSystem {
+      SAOTOME = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./common.nix
-          ./hosts/KAZOOIE
+          ./hosts/SAOTOME
 
           ./modules/nixos/wireguard/saotome+kazooie/saotome.nix
 
