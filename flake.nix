@@ -110,7 +110,7 @@
           linger.nixosModules.x86_64-linux.default
           pihole.nixosModules.x86_64-linux.default
 
-          ./modules/pihole.nix
+          ./modules/nixos/pihole.nix
           ./modules/nixos/wireguard/saotome+kazooie/saotome.nix
 
           ./users/sana
