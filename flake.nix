@@ -114,6 +114,21 @@
           ./modules/nixos/wireguard/saotome+kazooie/saotome.nix
 
           ./users/sana
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              backupFileExtension = "backup";
+              extraSpecialArgs = { inherit nix-colors; };
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.sana = {
+                imports = [
+                  ./users/sana/home.nix
+                ];
+              };
+            };
+          }
         ];
       };
     };
