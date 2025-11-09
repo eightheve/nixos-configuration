@@ -2,8 +2,6 @@
 
 Multi-host NixOS flake configuration. Will forever be a work in progress, but is especially WIP right now.
 
----
-
 ## Directory Structure
 - `common.nix`: shared configuration across all systems (SSH, i18n, base packages, etc.)
 - `hosts/`: per-host system configs (`default.nix`, `hardware.nix`)
