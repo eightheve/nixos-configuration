@@ -1,0 +1,20 @@
+# Build outputs
+result
+result-*
+
+# Backup files
+*.backup
+
+# Temporary files
+*~
+.#*
+\#*\#
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Custom assets (i.e. wallpapers)
+assets/*
