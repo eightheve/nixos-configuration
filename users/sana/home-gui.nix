@@ -27,7 +27,7 @@
     thcrap-steam-proton-wrapper
 
     pcsx2
-    vintagestory
+    vintagestoryPackages.latest
     prismlauncher
 
     pavucontrol
