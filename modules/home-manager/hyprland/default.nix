@@ -82,10 +82,10 @@
       # INPUT #
       # https://wiki.hypr.land/Configuring/Variables/#input
       input = {
-        kb_layout = "us";
+        kb_layout = "us,us(colemak)";
         kb_variant = "";
         kb_model = "";
-        kb_options = "";
+        kb_options = "grp:win_space_toggle,compose:ralt";
         kb_rules = "";
         follow_mouse = 1;
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
@@ -112,6 +112,11 @@
         "workspace 3, class:^(steam_app_374320)$"
         #"tile, class:^(steam_app_374320)$"
         "fullscreen, class:^(steam_app_374320)$"
+
+        "size 768 256, class:^(imv)$, title:.*colemak-layout\.png.*"
+        "float, class:^(imv)$, title:.*colemak-layout\.png.*"
+        "opacity 0.4, class:^(imv)$, title:.*colemak-layout\.png.*"
+        "noblur, class:^(imv)$, title:.*colemak-layout\.png.*"
       ];
     };
   };

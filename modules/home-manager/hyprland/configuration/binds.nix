@@ -8,7 +8,7 @@
     "$mainMod, Q, exec, $terminal"
     "$mainMod, C, killactive,"
     "$mainMod, M, exit," # exit hyprland (lock)
-    "$mainMod, E, exec, $fileManager"
+    "$mainMod, E, exec, imv ~/.assets/colemak-layout.png" # invoke imv for layout
     "$mainMod, V, togglefloating,"
     "$mainMod, R, exec, $menu"
     "$mainMod, P, pseudo," # dwindle
