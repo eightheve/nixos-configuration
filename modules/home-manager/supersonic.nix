@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, assets, ... }:
 
 {
   home.packages = with pkgs; [
@@ -28,6 +28,6 @@
   '';
 
   # FONTS
-  home.file.".config/supersonic/fonts/SarasaUiCL-Bold.ttf".source = ../../assets/SarasaUiCL-Bold.ttf;
-  home.file.".config/supersonic/fonts/SarasaUiCL-Regular.ttf".source = ../../assets/SarasaUiCL-Regular.ttf;
+  home.file.".config/supersonic/fonts/SarasaUiCL-Bold.ttf".source = "${assets}/SarasaUiCL-Bold.ttf";
+  home.file.".config/supersonic/fonts/SarasaUiCL-Regular.ttf".source = "${assets}/SarasaUiCL-Regular.ttf";
 }

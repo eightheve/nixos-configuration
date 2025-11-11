@@ -15,6 +15,7 @@
     hyprpaper
     slurp
     grim
+    wl-clipboard
   ];
 
   programs.wofi = {
