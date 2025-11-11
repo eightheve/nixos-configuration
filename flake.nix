@@ -24,15 +24,10 @@
       url = "github:PierreBorine/vintagestory-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    assets = {
-      url = "path:./assets";
-      flake = false;
-    };
   };
 
   outputs = {
     nixpkgs,
-    assets,
     gtk-nix,
     linger,
     pihole,
@@ -62,7 +57,7 @@
           {
             home-manager = {
               backupFileExtension = "backup";
-              extraSpecialArgs = { inherit nix-colors gtk-nix assets; };
+              extraSpecialArgs = { inherit nix-colors gtk-nix; };
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {

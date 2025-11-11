@@ -1,17 +1,5 @@
 {
   "nodes": {
-    "assets": {
-      "flake": false,
-      "locked": {
-        "path": "./assets",
-        "type": "path"
-      },
-      "original": {
-        "path": "./assets",
-        "type": "path"
-      },
-      "parent": []
-    },
     "banner": {
       "inputs": {
         "nixpkgs": [
@@ -239,7 +227,6 @@
     },
     "root": {
       "inputs": {
-        "assets": "assets",
         "flake-utils": "flake-utils",
         "gtk-nix": "gtk-nix",
         "home-manager": "home-manager",
