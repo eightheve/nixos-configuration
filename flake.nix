@@ -79,6 +79,34 @@
         ];
       };
 
+      SATELLITE = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./common.nix
+          ./hosts/SATELLITE
+
+          ./modules/nixos/lain-grub
+          ./modules/nixos/sound.nix
+
+          ./users/sana
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              backupFileExtension = "backup";
+              extraSpecialArgs = { inherit nix-colors gtk-nix; };
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.sana = {
+                imports = [
+                  ./users/sana/home.nix
+                ];
+              };
+            };
+          }
+        ];
+      };
+
       BANJO = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
