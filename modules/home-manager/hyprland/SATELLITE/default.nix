@@ -37,9 +37,7 @@
     settings = {
       # MONITORS #
       monitor = [
-        "DP-1, disable"
-        "HDMI-A-1, 1920x1200, 0x0, 1, transform, 1"
-        "DP-2, 1920x1200, 1200x80, 1"
+        "eDP-1, 1920x1080, 0x0, 1"
       ];
 
       # WINDOWS AND WORKSPACES #
