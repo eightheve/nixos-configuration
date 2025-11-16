@@ -2,25 +2,17 @@
 
 {
   imports = [
-    ./configuration/binds.nix
-    ./configuration/visuals.nix
-
-    ./gtk-theme.nix
-    ./hyprpaper.nix
-    ./mako.nix
-    ./waybar.nix
+    ./binds.nix
   ];
 
   home.packages = with pkgs; [
-    hyprpaper
     slurp
     grim
     wl-clipboard
   ];
 
-  programs.wofi = {
-    enable = true;
-  };
+  programs.wofi.enable = true;
+  services.mako.enable = true;
 
   home.pointerCursor = {
     gtk.enable = true;
@@ -32,18 +24,10 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      # MONITORS #
-      monitor = [
-        "DP-1, disable"
-        "HDMI-A-1, 1920x1200, 0x0, 1, transform, 1"
-        "DP-2, 1920x1200, 1200x80, 1"
-      ];
-
       # MY PROGRAMS #
       # See https://wiki.hypr.land/Configuring/Keywords/
       # Set programs that you use
       "$terminal" = "kitty";
-      "$fileManager" = "dolphin";
       "$menu" = "wofi --show drun";
 
       # AUTOSTART #
@@ -105,18 +89,6 @@
         "float, class:^(org.pulseaudio.pavucontrol)$"
         # Fix some dragging issues with XWayland
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-      ];
-
-      windowrulev2 = [
-        "monitor DP-2, class:^(steam_app_374320)$"
-        "workspace 3, class:^(steam_app_374320)$"
-        #"tile, class:^(steam_app_374320)$"
-        "fullscreen, class:^(steam_app_374320)$"
-
-        "size 768 256, class:^(imv)$, title:.*colemak-layout\.png.*"
-        "float, class:^(imv)$, title:.*colemak-layout\.png.*"
-        "opacity 0.4, class:^(imv)$, title:.*colemak-layout\.png.*"
-        "noblur, class:^(imv)$, title:.*colemak-layout\.png.*"
       ];
     };
   };

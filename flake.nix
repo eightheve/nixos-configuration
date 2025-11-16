@@ -65,13 +65,15 @@
                   ./users/sana/home.nix
                   ./users/sana/home-gui.nix
 
-                  ./modules/home-manager/vesktop
-                  ./modules/home-manager/hyprland
+                  ./modules/home-manager/hyprland/common
+                  ./modules/home-manager/hyprland/PASSENGER
+
                   ./modules/home-manager/fish.nix
                   ./modules/home-manager/kitty.nix
                   ./modules/home-manager/supersonic.nix
                   ./modules/home-manager/xdg.nix
                   ./modules/home-manager/zed.nix
+                  ./modules/home-manager/vesktop
                 ];
               };
             };
@@ -85,8 +87,8 @@
           ./common.nix
           ./hosts/SATELLITE
 
-          ./modules/nixos/lain-grub
           ./modules/nixos/sound.nix
+          ./modules/nixos/hyprland.nix
 
           ./users/sana
 
@@ -100,6 +102,13 @@
               users.sana = {
                 imports = [
                   ./users/sana/home.nix
+                  ./users/sana/home-gui.nix
+
+                  ./modules/home-manager/hyprland/common
+                  ./modules/home-manager/hyprland/SATELLITE
+
+                  ./modules/home-manager/kitty.nix
+                  ./modules/home-manager/xdg.nix
                 ];
               };
             };

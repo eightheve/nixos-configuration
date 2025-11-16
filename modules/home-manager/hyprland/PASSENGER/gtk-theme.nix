@@ -14,28 +14,6 @@
 
   gtkNix = {
     enable = true;
-    #whites =
-    #  let
-    #    mkWhite = alpha: "#${config.colorScheme.palette.base0E}${alpha}";
-    #  in
-    #  {
-    #    strongest = mkWhite "FF";
-    #    strong = mkWhite "DE";
-    #    moderate = mkWhite "57";
-    #    weak = mkWhite "24";
-    #    weakest = mkWhite "0F";
-    #  };
-    #blacks =
-    #  let
-    #    mkBlack = alpha: "#${config.colorScheme.palette.base01}${alpha}";
-    #  in
-    #  {
-    #    strongest = mkBlack "FF";
-    #    strong = mkBlack "DE";
-    #    moderate = mkBlack "6B";
-    #    weak = mkBlack "26";
-    #    weakest = mkBlack "0F";
-    #  };
 
     palette = rec {
       base00 = "070b13"; # BACKGROUND
