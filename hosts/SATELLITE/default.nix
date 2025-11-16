@@ -7,7 +7,6 @@
 
   boot.kernelModules = [ "xpad" ];
   boot.loader = {
-    efi.canTouchEfiVariables = true;
     grub = {
       enable = true;
       devices = [ "nodev" ];
