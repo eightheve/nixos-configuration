@@ -26,6 +26,7 @@
       enable = true;
     };
     printing.enable = true;
+    fprintd.enable = true;
   };
 
   programs = {
@@ -35,6 +36,12 @@
   hardware = {
     graphics.enable = true;
     bluetooth.enable = true;
+    sensor.iio.enable = true;
+
+    trackpoint = {
+      enable = true;
+      emulateWheel = true;
+    };
   };
 
   environment.systemPackages = with pkgs; [
