@@ -24,12 +24,6 @@
 
     wine
     winetricks
-    thcrap-steam-proton-wrapper
-
-    pcsx2
-    vintagestoryPackages.latest
-    prismlauncher
-    ckan
 
     pavucontrol
     playerctl
