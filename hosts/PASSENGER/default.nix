@@ -74,8 +74,7 @@
     gwe
     lm_sensors
     pulseaudio
-    neofetch
-  ];
+    ];
 
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;

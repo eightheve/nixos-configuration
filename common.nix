@@ -58,6 +58,7 @@
 
   environment.systemPackages = with pkgs; [
     mailutils
+    fastfetch
     wget
     curl
     git
