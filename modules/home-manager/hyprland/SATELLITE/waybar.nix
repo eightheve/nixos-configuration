@@ -10,9 +10,9 @@
         position = "top";
         margin = "8 8 0";
         spacing = 8;
-        output = "DP-2";
+        output = "eDP-1";
         modules-left = [
-          "cpu"
+	  "battery"
           "hyprland/workspaces"
         ];
         modules-center = [
@@ -23,7 +23,14 @@
           "clock#date"
           "pulseaudio"
         ];
-        "pulseaudio" = {
+	"battery" = {
+	  format-discharging = "{capacity}% {icon}";
+	  format-charging = "{capacity}% 󰂅";
+	  format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂂" "󱈑" ];
+	  tooltip-format = "{time}";
+          interval = 5;
+	};
+	"pulseaudio" = {
           format = "{volume}% {icon}";
           max-volume = 100;
           scroll-step = 1;
@@ -57,12 +64,8 @@
         "clock#date" = {
             interval = 60;
             tooltip = true;
-            format = "{:%a %d }";
+            format = "{:%a %d}";
             tooltip-format = "{:%Y-%m-%d}";
-        };
-        cpu = {
-          interval = 5;
-          format = "{usage}% ";
         };
       };
     };
