@@ -5,14 +5,9 @@
     ./hardware.nix
   ];
 
-  boot.kernelModules = [ "xpad" ];
-  boot.loader = {
-    grub = {
-      enable = true;
-      devices = [ "nodev" ];
-      efiSupport = true;
-      useOSProber = true;
-    };
+  boot.loader.grub = {
+    enable = true;
+    device = "/dev/nvme0n1";
   };
 
   xdg.portal = {
