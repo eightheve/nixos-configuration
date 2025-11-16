@@ -29,6 +29,7 @@
     pcsx2
     vintagestoryPackages.latest
     prismlauncher
+    ckan
 
     pavucontrol
     playerctl
