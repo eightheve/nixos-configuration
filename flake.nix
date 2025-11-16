@@ -64,6 +64,7 @@
                 imports = [
                   ./users/sana/home.nix
                   ./users/sana/home-gui.nix
+                  ./users/sana/home-games.nix
 
                   ./modules/home-manager/hyprland/common
                   ./modules/home-manager/hyprland/PASSENGER
