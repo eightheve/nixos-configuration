@@ -15,11 +15,12 @@ Multi-host NixOS flake configuration. Will forever be a work in progress, but is
 ## Hosts
 
 ### ACTIVE
-| Host      | Role                | Location    | Model        |
-| :-------- | :-----------------: | :---------: | :----------: |
-| PASSENGER | Desktop/Workstation | Home        | Custom Build |
-| SAOTOME   | Home Server/NAS     | Home        | Dell R720    |
-| KAZOOIE   | Proxy for SAOTOME   | VA (VPS)    | N/A          |
+| Host      | Role                | Location    | Model             |
+| :-------- | :-----------------: | :---------: | :---------------: |
+| PASSENGER | Desktop/Workstation | Home        | Custom Build      |
+| SATELLITE | Laptop Workstation  | Mobile      | ThinkPad Yoga 260 |
+| SAOTOME   | Home Server/NAS     | Home        | Dell R720         |
+| KAZOOIE   | Proxy for SAOTOME   | VA (VPS)    | N/A               |
 
 ### INACTIVE
 | Host      | Role                | Location    | Model                   |
