@@ -161,7 +161,7 @@
           {
             home-manager = {
               backupFileExtension = "backup";
-              extraSpecialArgs = { inherit nix-colors; };
+              extraSpecialArgs = { inherit nix-colors inputs; };
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {
