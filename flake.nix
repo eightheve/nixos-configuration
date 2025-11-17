@@ -172,6 +172,82 @@
           }
         ];
       };
+
+
+      HAMUKO = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./common.nix
+          ./hosts/HAMUKO
+
+          ./users/sana
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              backupFileExtension = "backup";
+              extraSpecialArgs = { inherit inputs; };
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.sana = {
+                import = [
+                  ./users/sana/home.nix
+                ];
+              };
+            };
+          }
+        ];
+      };
+
+      NYANKO = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./common.nix
+          ./hosts/HAMUKO
+
+          ./users/sana
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              backupFileExtension = "backup";
+              extraSpecialArgs = { inherit inputs; };
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.sana = {
+                import = [
+                  ./users/sana/home.nix
+                ];
+              };
+            };
+          }
+        ];
+      };
+
+      TOMOCCHI = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./common.nix
+          ./hosts/HAMUKO
+
+          ./users/sana
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              backupFileExtension = "backup";
+              extraSpecialArgs = { inherit inputs; };
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.sana = {
+                import = [
+                  ./users/sana/home.nix
+                ];
+              };
+            };
+          }
+        ];
+      };
     };
   };
 }
