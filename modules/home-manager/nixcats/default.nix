@@ -22,8 +22,6 @@ in {
 
       luaPath = ./.;
 
-      # the .replace vs .merge options are for modules based on existing configurations,
-      # they refer to how multiple categoryDefinitions get merged together by the module.
       # for useage of this section, refer to :h nixCats.flake.outputs.categories
       categoryDefinitions.replace = ({ pkgs, settings, categories, extra, name, mkPlugin, ... }@packageDef: {
         # to define and use a new category, simply add a new list to a set here,
@@ -31,7 +29,6 @@ in {
         # provide when you build the package using this builder function.
         # see :help nixCats.flake.outputs.packageDefinitions for info on that section.
 
-        # lspsAndRuntimeDeps:
         # this section is for dependencies that should be available
         # at RUN TIME for plugins. Will be available to PATH within neovim terminal
         # this includes LSPs
@@ -61,8 +58,6 @@ in {
         # This is for plugins that will load at startup without using packadd:
         startupPlugins = {
           general = with pkgs.vimPlugins; [
-            # lazy loading isnt required with a config this small
-            # but as a demo, we do it anyway.
             lze
             lzextras
             snacks-nvim
@@ -142,8 +137,7 @@ in {
             # unwrappedCfgPath = "/path/to/here";
             # IMPORTANT:
             # your alias may not conflict with your other packages.
-            aliases = [ "vim" "homeVim" ];
-            # neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.neovim;
+            aliases = [ "vim" "nvim" ];
             hosts.python3.enable = true;
             hosts.node.enable = true;
           };

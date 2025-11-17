@@ -24,6 +24,7 @@
       url = "github:PierreBorine/vintagestory-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixCats.url = "github:BirdeeHub/nixCats-nvim";
   };
 
   outputs = {
@@ -31,11 +32,12 @@
     gtk-nix,
     linger,
     pihole,
+    nixCats,
     nix-colors,
     home-manager,
     vintagestory-nix,
     ...
-  }: {
+  }@inputs: {
     nixosConfigurations = {
       PASSENGER = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -97,7 +99,7 @@
           {
             home-manager = {
               backupFileExtension = "backup";
-              extraSpecialArgs = { inherit nix-colors gtk-nix; };
+              extraSpecialArgs = { inherit nix-colors gtk-nix inputs; };
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {
@@ -110,6 +112,7 @@
 
                   ./modules/home-manager/kitty.nix
                   ./modules/home-manager/xdg.nix
+                  ./modules/home-manager/nixcats
                 ];
               };
             };
