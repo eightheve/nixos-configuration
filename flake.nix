@@ -112,6 +112,7 @@
 
                   ./modules/home-manager/kitty.nix
                   ./modules/home-manager/xdg.nix
+                  ./modules/home-manager/supersonic.nix
                   ./modules/home-manager/nixcats
                 ];
               };
@@ -166,6 +167,7 @@
               users.sana = {
                 imports = [
                   ./users/sana/home.nix
+                  ./modules/home-manager/nixcats
                 ];
               };
             };
