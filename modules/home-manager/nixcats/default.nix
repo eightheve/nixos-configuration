@@ -44,15 +44,6 @@ in {
             nixd
             alejandra
           ];
-          go = with pkgs; [
-            gopls
-            delve
-            golint
-            golangci-lint
-            gotools
-            go-tools
-            go
-          ];
         };
 
         # This is for plugins that will load at startup without using packadd:
@@ -63,33 +54,30 @@ in {
             snacks-nvim
             onedark-nvim
             vim-sleuth
+            
+            nvim-lspconfig
+            which-key-nvim
+            lualine-nvim
+            nvim-treesitter.withAllGrammars
+            
+            mini-nvim
+            vim-startuptime
+            blink-cmp
+            lualine-lsp-progress
+            gitsigns-nvim
+            nvim-lint
+            conform-nvim
+            nvim-dap
+            nvim-dap-ui
+            nvim-dap-virtual-text
           ];
         };
 
         # not loaded automatically at startup.
         # use with packadd and an autocommand in config to achieve lazy loading
         optionalPlugins = {
-          go = with pkgs.vimPlugins; [
-            nvim-dap-go
-          ];
           lua = with pkgs.vimPlugins; [
             lazydev-nvim
-          ];
-          general = with pkgs.vimPlugins; [
-            mini-nvim
-            nvim-lspconfig
-            vim-startuptime
-            blink-cmp
-            nvim-treesitter.withAllGrammars
-            lualine-nvim
-            lualine-lsp-progress
-            gitsigns-nvim
-            which-key-nvim
-            nvim-lint
-            conform-nvim
-            nvim-dap
-            nvim-dap-ui
-            nvim-dap-virtual-text
           ];
         };
 
