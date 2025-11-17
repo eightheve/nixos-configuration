@@ -26,7 +26,9 @@
       enable = true;
     };
     printing.enable = true;
-    fprintd.enable = true;
+    fprintd = {
+      enable = true;
+    };
   };
 
   programs = {

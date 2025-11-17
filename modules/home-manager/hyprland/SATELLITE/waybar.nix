@@ -22,6 +22,7 @@
           "clock#time"
           "clock#date"
           "pulseaudio"
+          "backlight"
         ];
 	"battery" = {
 	  format-discharging = "{capacity}% {icon}";
@@ -39,6 +40,9 @@
             default-muted = "";
           };
           on-click = "pavucontrol";
+        };
+        "backlight" = {
+          format = "{percent}% 󰃠";
         };
         "hyprland/workspaces" = {
           format = "{id}: {icon}";
