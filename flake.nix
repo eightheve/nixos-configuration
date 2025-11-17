@@ -32,7 +32,6 @@
     gtk-nix,
     linger,
     pihole,
-    nixCats,
     nix-colors,
     home-manager,
     vintagestory-nix,
@@ -59,7 +58,7 @@
           {
             home-manager = {
               backupFileExtension = "backup";
-              extraSpecialArgs = { inherit nix-colors gtk-nix; };
+              extraSpecialArgs = { inherit nix-colors gtk-nix inputs; };
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {
@@ -73,6 +72,7 @@
 
                   ./modules/home-manager/fish.nix
                   ./modules/home-manager/kitty.nix
+                  ./modules/home-manager/nixcats
                   ./modules/home-manager/supersonic.nix
                   ./modules/home-manager/xdg.nix
                   ./modules/home-manager/zed.nix
