@@ -5,7 +5,7 @@
     isNormalUser = true;
     createHome = true;
     description = "二葉さな";
-    extraGroups = [ "networkmanager" "wheel" "input" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "libvirtd" "slskd" ];
     shell = pkgs.fish;
 
     openssh.authorizedKeys.keys = [

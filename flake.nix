@@ -154,6 +154,7 @@
 
           ./modules/nixos/pihole.nix
           ./modules/nixos/wireguard/saotome+kazooie/saotome.nix
+          ./modules/nixos/slskd.nix
 
           ./users/sana
 
@@ -168,6 +169,7 @@
                 imports = [
                   ./users/sana/home.nix
                   ./modules/home-manager/nixcats
+                  ./modules/home-manager/beets.nix
                 ];
               };
             };

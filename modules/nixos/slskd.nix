@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   users.users.slskd = {
@@ -6,6 +6,20 @@
     group = "slskd";
     home = "/var/lib/slskd";
     createHome = true;
+    homeMode = "774";
+  };
+
+  networking.firewall.allowedTCPPorts = [ 5030 5031 50300 80 443 ];
+  networking.firewall.allowedUDPPorts = [ 50300 ];
+
+  services.nginx = {
+    enable = true;
+    virtualHosts."slskd.home.doppel.moe" = {
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:5030";
+        proxyWebsockets = true;
+      };
+    };
   };
 
   services.slskd = {
@@ -18,22 +32,13 @@
     group = "slskd";
     user = "slskd";
 
-    nginx = {
-      serverName = "slskd.home.doppel.moe";
-      listen = [ {
-        addr = "127.0.0.1";
-        port = 5031;
-        ssl = true;
-      } ];
-    };
-
     settings = {
       directories = {
         incomplete = "/var/lib/slskd/incomplete";
         downloads = "/var/lib/slskd/downloads";
       };
       shares = {
-        directories = [ "[RAID]/srv/data/music" ];
+        directories = [ "[RAID]/srv/data/music" "[ARCHIVE]/srv/data/old-music/" ];
         cache = {
           storage_mode = "memory";
           workers = 12;
@@ -89,6 +94,13 @@
           you can also message me if you have music recommendations. i love emo and math rock
         '';
         picture = "/var/lib/slskd/profile-picture.jpg";
+      };
+
+      web = {
+        https = {
+          disabled = false;
+          port = 5031;
+        };
       };
     }; 
   };

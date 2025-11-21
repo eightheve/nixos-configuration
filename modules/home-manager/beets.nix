@@ -10,18 +10,9 @@
       };
       original_date = "yes";
 
-      plugins = [ "scrub" "musicbrainz" "lyrics" "lastgenre" "missing" "ftintitle" ];
-      lastgenre = {
-        count = 5;
-        force = "yes";
-        whitelist = "~/.config/beets/whitelist.txt";
-        canonical = "yes";
-      };
+      plugins = "scrub missing ftintitle";
       ftintitle = {
         auto = "yes";
-      };
-      lyrics = {
-        auto = "no";
       };
     };
   };
