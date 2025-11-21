@@ -21,6 +21,17 @@
   networking.networkmanager.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 2222 ];
 
+  networking.firewall = {
+    allowedUDPPortRanges = [ {
+      from = 40000;
+      to = 50000;
+    } ];
+    allowedTCPPortRanges = [ {
+      from = 40000;
+      to = 50000;
+    } ];
+  };
+
   services = {
     udisks2.enable = true;
     postfix = {
