@@ -44,6 +44,10 @@ in {
             nixd
             alejandra
           ];
+          clojure = with pkgs; [
+            clojure-lsp
+            clojure
+          ];
         };
 
         # This is for plugins that will load at startup without using packadd:
@@ -136,6 +140,7 @@ in {
             general = true;
             lua = true;
             nix = true;
+            clojure = true;
             go = false;
           };
           # anything else to pass and grab in lua with `nixCats.extra`

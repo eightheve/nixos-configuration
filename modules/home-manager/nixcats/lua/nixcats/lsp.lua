@@ -3,6 +3,7 @@ local lsp = require("lspconfig")
 -- LSP servers from nixCats runtime deps
 lsp.lua_ls.setup({})
 lsp.nixd.setup({})
+lsp.clojure_lsp.setup({})
 
 -- global LSP keybinds
 vim.api.nvim_create_autocmd("LspAttach", {
