@@ -4,30 +4,31 @@
   imports = [
     ./visuals.nix
     ./waybar.nix
+    ./hyprpaper.nix
     nix-colors.homeManagerModules.default
   ];
 
     colorScheme = {
-      slug = "madoka";
-      name = "Madoka Dark";
+      slug = "haibane";
+      name = "Haibane Dark";
       author = "eightheve";
       palette = {
-        base00 = "424852"; # GREY
-        base01 = "070b13"; # Black
-        base02 = "e03742"; # RED
-        base03 = "a62730"; # Maroon
-        base04 = "3fb68f"; # LIME
-        base05 = "027c5c"; # Green
-        base06 = "eba254"; # YELLOW
-        base07 = "ae783e"; # Olive
-        base08 = "936db5"; # BLUE
-        base09 = "744c80"; # Navy
-        base0A = "f34467"; # FUCHSIA
-        base0B = "b4304b"; # Purple
-        base0C = "5b9ae8"; # AQUA
-        base0D = "5e69ac"; # Teal
-        base0E = "e3e3e3"; # WHITE (was f3f3f3)
-        base0F = "a3a3a3"; # Silver (was a3a3a3)
+        base00 = "4b3b40"; # GREY
+        base01 = "13070b"; # Black
+        base02 = "f89281"; # RED
+        base03 = "cb786a"; # Maroon
+        base04 = "7ebd71"; # LIME
+        base05 = "679b5c"; # Green
+        base06 = "d8a545"; # YELLOW
+        base07 = "b2883a"; # Olive
+        base08 = "a1a6ff"; # BLUE
+        base09 = "8489d1"; # Navy
+        base0A = "e892cc"; # FUCHSIA
+        base0B = "bf78a8"; # Purple
+        base0C = "51bbc0"; # AQUA
+        base0D = "029da4"; # Teal
+        base0E = "f0f2f1"; # WHITE (was f3f3f3)
+        base0F = "c3c4c3"; # Silver (was a3a3a3)
       };
     };
     #${config.colorScheme.palette.base0X}

@@ -10,6 +10,8 @@
     device = "/dev/nvme0n1";
   };
 
+  boot.initrd.kernelModules = [ "ideapad_laptop" ];
+
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];

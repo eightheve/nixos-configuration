@@ -46,7 +46,6 @@ in {
           ];
           clojure = with pkgs; [
             clojure-lsp
-            clojure
           ];
         };
 
