@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,6 +30,7 @@
 
   outputs = {
     nixpkgs,
+    nixpkgs-unstable,
     gtk-nix,
     linger,
     pihole,
@@ -36,7 +38,11 @@
     home-manager,
     vintagestory-nix,
     ...
-  }@inputs: {
+  }@inputs: 
+    let 
+      system = "x86_64-linux";
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
+    in {
     nixosConfigurations = {
       PASSENGER = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -58,7 +64,7 @@
           {
             home-manager = {
               backupFileExtension = "backup";
-              extraSpecialArgs = { inherit nix-colors gtk-nix inputs; };
+              extraSpecialArgs = { inherit pkgs-unstable nix-colors gtk-nix inputs; };
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {
@@ -86,6 +92,7 @@
 
       SATELLITE = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit pkgs-unstable; };
         modules = [
           ./common.nix
           ./hosts/SATELLITE
@@ -99,7 +106,7 @@
           {
             home-manager = {
               backupFileExtension = "backup";
-              extraSpecialArgs = { inherit nix-colors gtk-nix inputs; };
+              extraSpecialArgs = { inherit pkgs-unstable nix-colors gtk-nix inputs; };
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {

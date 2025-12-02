@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -35,7 +35,13 @@
 
   programs = {
     nix-ld.enable = true;
+    steam.enable = true;
   };
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-unwrapped"
+  ];
 
   hardware = {
     graphics.enable = true;
