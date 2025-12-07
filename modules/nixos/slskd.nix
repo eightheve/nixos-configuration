@@ -14,12 +14,26 @@
 
   services.nginx = {
     enable = true;
-    virtualHosts."slskd.home.doppel.moe" = {
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+
+    virtualHosts."soulseek.doppel.moe" = {
+      forceSSL = true;
+      enableACME = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:5030";
         proxyWebsockets = true;
       };
     };
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "sana@doppel.moe";
+  };
+
+  systemd.services.slskd.serviceConfig = {
+    UMask = "0003";
   };
 
   services.slskd = {
@@ -38,7 +52,7 @@
         downloads = "/var/lib/slskd/downloads";
       };
       shares = {
-        directories = [ "[RAID]/srv/data/music" "[ARCHIVE]/srv/data/old-music/" ];
+        directories = [ "[RAID]/srv/data/music" ];
         cache = {
           storage_mode = "memory";
           workers = 12;

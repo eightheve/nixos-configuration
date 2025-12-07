@@ -8,6 +8,28 @@
     createHome = true;
   };
 
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+    
+    virtualHosts."navi.doppel.moe" = {
+      forceSSL = true;
+      enableACME = true;
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:4533";
+        proxyWebsockets = true;
+      };
+    };
+  };
+
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "sana@doppel.moe";
+  };
+
   services.navidrome = {
     enable = true;
     user = "navidrome";

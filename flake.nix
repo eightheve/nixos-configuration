@@ -155,6 +155,7 @@
           ./modules/nixos/pihole.nix
           ./modules/nixos/wireguard/saotome+kazooie/saotome.nix
           ./modules/nixos/slskd.nix
+          ./modules/nixos/navidrome.nix
 
           ./users/sana
 
