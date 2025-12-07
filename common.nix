@@ -44,6 +44,11 @@
     enableSSHSupport = true;
   };
 
+  environment.shellInit = ''
+    gpg-connect-agent /bye
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  '';
+
   services = {
     pcscd.enable = true;
     udisks2.enable = true;
@@ -91,6 +96,11 @@
 
   environment.systemPackages = with pkgs; [
     yubioath-flutter
+    yubikey-personalization
+    yubico-piv-tool
+    yubikey-manager
+
+    cryptsetup
     mailutils
     fastfetch
     wget
