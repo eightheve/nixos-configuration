@@ -1,13 +1,20 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
     ./hardware.nix
   ];
 
-  boot.loader.grub = {
-    enable = true;
-    device = "/dev/nvme0n1";
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+    };
   };
 
   boot.initrd.kernelModules = [ "ideapad_laptop" ];
@@ -35,7 +42,13 @@
 
   programs = {
     nix-ld.enable = true;
+    steam.enable = true;
   };
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "steam"
+    "steam-unwrapped"
+  ];
 
   hardware = {
     graphics.enable = true;

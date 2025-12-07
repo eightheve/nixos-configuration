@@ -32,7 +32,25 @@
     } ];
   };
 
+  security.pam.yubico = {
+    enable = true;
+    debug = true;
+    mode = "challenge-response";
+    id = [ "24483552" ];
+  };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  environment.shellInit = ''
+    gpg-connect-agent /bye
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  '';
+
   services = {
+    pcscd.enable = true;
     udisks2.enable = true;
     postfix = {
       enable = true;
@@ -48,6 +66,15 @@
         KbdInteractiveAuthentication = false;
       };
     };
+    udev.extraRules = ''
+      ACTION=="REMOVE",\
+        ENV{ID_BUS}=="usb",\
+        ENV{ID_MODEL_ID}=="0407",\
+        ENV{ID_VENDOR_ID}=="1050",\
+        ENV{ID_VENDOR}=="Yubico",\
+        RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+    '';
+    udev.packages = [ pkgs.yubikey-personalization ];
   };
 
   time.timeZone = "America/New_York";
@@ -68,6 +95,12 @@
   };
 
   environment.systemPackages = with pkgs; [
+    yubioath-flutter
+    yubikey-personalization
+    yubico-piv-tool
+    yubikey-manager
+
+    cryptsetup
     mailutils
     fastfetch
     wget
