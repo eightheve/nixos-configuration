@@ -67,7 +67,7 @@
       };
     };
     udev.extraRules = ''
-      ACTION=="REMOVE",\
+      ACTION=="remove",\
         ENV{ID_BUS}=="usb",\
         ENV{ID_MODEL_ID}=="0407",\
         ENV{ID_VENDOR_ID}=="1050",\
