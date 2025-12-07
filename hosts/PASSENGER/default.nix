@@ -25,13 +25,19 @@
     "/share/applications"
   ];
 
-  networking.hostName = "PASSENGER";
-  networking.interfaces.enp12s0 = {
-    ipv4.addresses = [ {
-      address = "192.168.1.3";
-      prefixLength = 24;
-    } ];
-    useDHCP = false;
+
+  networking = {
+    hostName = "PASSENGER";
+    defaultGateway = "192.168.1.1";
+    nameservers = [ "192.168.1.10" ];
+    interfaces.enp12s0 = {
+      ipv4.addresses = [ {
+        address = "192.168.1.3";
+        prefixLength = 24;
+      } ];
+      useDHCP = false;
+    };
+    firewall.allowedUDPPorts = [ 27036 ];
   };
 
   nixpkgs.config.allowUnfree = true;
