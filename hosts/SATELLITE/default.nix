@@ -5,10 +5,16 @@
     ./hardware.nix
   ];
 
-  boot.loader.grub = {
-    enable = true;
-    device = "nodev";
-    efiSupport = true;
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      enable = true;
+      device = "nodev";
+      efiSupport = true;
+    };
   };
 
   boot.initrd.kernelModules = [ "ideapad_laptop" ];

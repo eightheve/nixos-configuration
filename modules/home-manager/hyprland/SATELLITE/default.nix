@@ -1,4 +1,4 @@
-{ nix-colors, ... }:
+{ nix-colors, pkgs, ... }:
 
 {
   imports = [
@@ -8,30 +8,106 @@
     nix-colors.homeManagerModules.default
   ];
 
-    colorScheme = {
-      slug = "haibane";
-      name = "Haibane Dark";
-      author = "eightheve";
-      palette = {
-        base00 = "4b3b40"; # GREY
-        base01 = "13070b"; # Black
-        base02 = "f89281"; # RED
-        base03 = "cb786a"; # Maroon
-        base04 = "7ebd71"; # LIME
-        base05 = "679b5c"; # Green
-        base06 = "d8a545"; # YELLOW
-        base07 = "b2883a"; # Olive
-        base08 = "a1a6ff"; # BLUE
-        base09 = "8489d1"; # Navy
-        base0A = "e892cc"; # FUCHSIA
-        base0B = "bf78a8"; # Purple
-        base0C = "51bbc0"; # AQUA
-        base0D = "029da4"; # Teal
-        base0E = "f0f2f1"; # WHITE (was f3f3f3)
-        base0F = "c3c4c3"; # Silver (was a3a3a3)
+  colorScheme = {
+    slug = "haibane";
+    name = "Haibane Dark";
+    author = "eightheve";
+    palette = {
+      base00 = "4b3b40"; # GREY
+      base01 = "13070b"; # Black
+      base02 = "f89281"; # RED
+      base03 = "cb786a"; # Maroon
+      base04 = "7ebd71"; # LIME
+      base05 = "679b5c"; # Green
+      base06 = "d8a545"; # YELLOW
+      base07 = "b2883a"; # Olive
+      base08 = "a1a6ff"; # BLUE
+      base09 = "8489d1"; # Navy
+      base0A = "e892cc"; # FUCHSIA
+      base0B = "bf78a8"; # Purple
+      base0C = "51bbc0"; # AQUA
+      base0D = "029da4"; # Teal
+      base0E = "f0f2f1"; # WHITE (was f3f3f3)
+      base0F = "c3c4c3"; # Silver (was a3a3a3)
+    };
+  };
+  #${config.colorScheme.palette.base0X}
+
+  services.hypridle = {
+    enable = true;
+    settings = {
+      listener = [
+        {
+          timeout = 300; # 5 minutes
+          on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+        }
+      ];
+      general = {
+        lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
       };
     };
-    #${config.colorScheme.palette.base0X}
+  };
+
+  fonts.fontconfig.enable = true;
+  home.packages = [ pkgs.libre-baskerville ];
+
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      background = {
+        path = "~/.assets/lock.jpg";
+        brightness = 0.2;
+      };
+      label = [
+        {
+          text = "Locked";
+          color = "rgba(38, 28, 23, 1.0)";
+          font_size = 48;
+          font_family = "Libre Baskerville";
+          position = "-65, -45";
+          halign = "right";
+          valign = "top";
+        }
+        {
+          text = "cmd[update:1000] ~/.config/hypr/scripts/nowplaying-title.sh";
+          color = "rgba(238, 228, 211, 1.0)";
+          font_size = 48;
+          font_family = "Libre Baskerville";
+          position = "65, 103";
+          halign = "left";
+          valign = "bottom";
+        }
+        {
+          text = "cmd[update:1000] ~/.config/hypr/scripts/nowplaying-artist.sh";
+          color = "rgba(238, 228, 211, 1.0)";
+          font_size = 38;
+          font_family = "Libre Baskerville";
+          position = "65, 45";
+          halign = "left";
+          valign = "bottom";
+        }
+      ];
+    };
+  };
+      
+  home.file.".config/hypr/scripts/nowplaying-title.sh" = {
+    text = ''
+      #!/usr/bin/env bash
+      ${pkgs.playerctl}/bin/playerctl metadata title 2>/dev/null
+    '';
+    executable = true;
+  };
+
+  home.file.".config/hypr/scripts/nowplaying-artist.sh" = {
+    text = ''
+      #!/usr/bin/env bash
+      artist=$(${pkgs.playerctl}/bin/playerctl metadata artist 2>/dev/null)
+      if [[ -n "$artist" ]]; then
+          echo "- $artist"
+      fi
+    '';
+    executable = true;
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
