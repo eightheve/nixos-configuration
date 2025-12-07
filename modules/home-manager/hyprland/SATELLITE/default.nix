@@ -109,6 +109,11 @@
     executable = true;
   };
 
+  home.file.".config/hypr/scripts/get-text-length.sh" = {
+    source = ./get-text-length.sh;
+    executable = true;
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {

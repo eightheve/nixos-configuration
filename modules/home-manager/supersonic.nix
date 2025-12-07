@@ -24,7 +24,7 @@
     InputBackground = "#${config.colorScheme.palette.base00}32"
     HyperLink = "#${config.colorScheme.palette.base0A}"
 
-    Primary = "#${config.colorScheme.palette.base0A}"
+    #Primary = "#${config.colorScheme.palette.base0A}"
   '';
 
   # FONTS
