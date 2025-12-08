@@ -49,7 +49,7 @@
   };
 
   fonts.fontconfig.enable = true;
-  home.packages = [ pkgs.libre-baskerville ];
+  home.packages = [ pkgs.libre-baskerville pkgs.imagemagick pkgs.ffmpeg-full ];
 
   programs.hyprlock = {
     enable = true;
@@ -58,6 +58,28 @@
         path = "~/.assets/lock.jpg";
         brightness = 0.2;
       };
+      image = [
+        {
+          reload_cmd = ''~/.config/hypr/scripts/get-text-bounder.sh "$(~/.config/hypr/scripts/nowplaying-title.sh)" 48'';
+          reload_time = 1;
+          size = 96;
+          rounding = 0;
+          border_size = 0;
+          position = "55, 93";
+          halign = "left";
+          valign = "bottom";
+        }
+        {
+          reload_cmd = ''~/.config/hypr/scripts/get-text-bounder.sh "$(~/.config/hypr/scripts/nowplaying-artist.sh)" 38'';
+          reload_time = 1;
+          size = 76;
+          rounding = 0;
+          border_size = 0;
+          position = "55, 35";
+          halign = "left";
+          valign = "bottom";
+        }
+      ];
       label = [
         {
           text = "Locked";
@@ -68,24 +90,24 @@
           halign = "right";
           valign = "top";
         }
-        {
-          text = "cmd[update:1000] ~/.config/hypr/scripts/nowplaying-title.sh";
-          color = "rgba(238, 228, 211, 1.0)";
-          font_size = 48;
-          font_family = "Libre Baskerville";
-          position = "65, 103";
-          halign = "left";
-          valign = "bottom";
-        }
-        {
-          text = "cmd[update:1000] ~/.config/hypr/scripts/nowplaying-artist.sh";
-          color = "rgba(238, 228, 211, 1.0)";
-          font_size = 38;
-          font_family = "Libre Baskerville";
-          position = "65, 45";
-          halign = "left";
-          valign = "bottom";
-        }
+#        {
+#          text = "cmd[update:1000] ~/.config/hypr/scripts/nowplaying-title.sh";
+#          color = "rgba(238, 228, 211, 1.0)";
+#          font_size = 48;
+#          font_family = "Libre Baskerville";
+#          position = "65, 103";
+#          halign = "left";
+#          valign = "bottom";
+#        }
+#        {
+#          text = "cmd[update:1000] ~/.config/hypr/scripts/nowplaying-artist.sh";
+#          color = "rgba(238, 228, 211, 1.0)";
+#          font_size = 38;
+#          font_family = "Libre Baskerville";
+#          position = "65, 45";
+#          halign = "left";
+#          valign = "bottom";
+#       }
       ];
     };
   };
@@ -109,8 +131,34 @@
     executable = true;
   };
 
-  home.file.".config/hypr/scripts/get-text-length.sh" = {
-    source = ./get-text-length.sh;
+  home.file.".config/hypr/scripts/get-text-bounder.sh" = {
+    text = ''
+      #!/usr/bin/env bash
+      
+      if [ "$#" -ne 2 ]; then
+          echo "Usage: $0 <text> <font_size>"
+          exit 1
+      fi
+      
+      TEXT="$1"
+      FONT_SIZE="$2"
+      FONT_FILE="${pkgs.libre-baskerville}/share/fonts/truetype/LibreBaskerville-Regular.ttf"
+      OUTPUT_DIR="/tmp/text-labels"
+      
+      mkdir -p "$OUTPUT_DIR"
+      
+      SAFE_TEXT=$(echo "$TEXT" | tr ' /' '_' | tr -cd '[:alnum:]_-')
+      OUTPUT_FILE="$OUTPUT_DIR/''${SAFE_TEXT}-''${FONT_SIZE}.png"
+      
+      WIDTH=$(${pkgs.imagemagick}/bin/magick -font "$FONT_FILE" -pointsize "$FONT_SIZE" label:"$TEXT" -format "%w" info:)
+      HEIGHT=$(${pkgs.imagemagick}/bin/magick -font "$FONT_FILE" -pointsize "$FONT_SIZE" label:"$TEXT" -format "%h" info:)
+      
+      ${pkgs.ffmpeg}/bin/ffmpeg -f lavfi -i "color=c=black@0.0:size=$((4 + ''${WIDTH}))x$((4 + ''${HEIGHT})),format=rgba" \
+          -vf "drawtext=fontfile='$FONT_FILE':text='$TEXT':fontsize=$FONT_SIZE:fontcolor=white:x=4:y=4:borderw=2:bordercolor=#261c17" \
+          -frames:v 1 -pix_fmt rgba -y "$OUTPUT_FILE" 2>/dev/null
+      
+      echo "$OUTPUT_FILE"
+    '';
     executable = true;
   };
 
