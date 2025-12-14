@@ -156,15 +156,17 @@
           ./common.nix
           ./hosts/SAOTOME
 
+          ./users/sana
+
           linger.nixosModules.x86_64-linux.default
           pihole.nixosModules.x86_64-linux.default
 
-          ./modules/nixos/pihole.nix
+            #./modules/nixos/pihole.nix
           ./modules/nixos/wireguard/saotome+kazooie/saotome.nix
           ./modules/nixos/slskd.nix
           ./modules/nixos/navidrome.nix
-
-          ./users/sana
+          ./modules/nixos/websites.nix
+          ./modules/nixos/sana-backend.nix
 
           home-manager.nixosModules.home-manager
           {

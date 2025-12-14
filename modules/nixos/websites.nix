@@ -1,37 +1,38 @@
-{ lib, config, ... }:
-
+{ lib, ... }:
 let
-  users = lib.filterAttrs (_: u: u.isNormalUser or false) config.user.users;
-in {
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "sana@doppel.moe";
-  };
-
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-      virtualHosts = lib.mapAttrs' (name: _: {
-        inherit name;
+  webUsers = [ "sana" ];
+in
+{
+  services.nginx.virtualHosts = builtins.listToAttrs (
+    builtins.map
+      (name: {
+        name = "${name}.doppel.moe";
         value = {
           serverName = "${name}.doppel.moe";
           root = "/srv/${name}/www";
           forceSSL = true;
           enableACME = true;
+          locations."/" = {
+            index = "index.html INDEX.html";
+            tryFiles = "$uri $uri/ /404.html =404";
+          };
         };
-    }) users;
-  };
+      })
+      webUsers
+  );
 
-  system.activationScripts.userWebDirs.text = ''
-    ${lib.concatStringsSep "\n" (
-      lib.mapAttrsToList (name: _: ''
-        mkdir -p /srv/${name}/www
-        chown ${name}:users /srv/${name}
-        chown ${name}:users /srv/${name}/www
-        chmod 755 /srv/${name}
-        chmod 755 /srv/${name}/www
-      '') users
-    )}
-  '';
+  system.activationScripts = builtins.listToAttrs (
+    builtins.map
+      (name: {
+        name = "setup-${name}-www";
+        value = lib.stringAfter [ "users" ] ''
+          mkdir -p /srv/${name}/www
+          chown ${name}:users /srv/${name}
+          chown ${name}:users /srv/${name}/www
+          chmod 755 /srv/${name}
+          chmod 755 /srv/${name}/www
+        '';
+      })
+      webUsers
+  );
 }
