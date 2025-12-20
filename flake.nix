@@ -158,6 +158,12 @@
 
           ./users/sana
 
+          {
+            nixpkgs.overlays = [
+              (import ./overlays/slskdn.nix)
+            ];
+          }
+
           linger.nixosModules.x86_64-linux.default
           pihole.nixosModules.x86_64-linux.default
 
