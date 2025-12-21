@@ -26,6 +26,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    sana-website = {
+      #url = "github:eightheve/sana.doppel.moe";
+      url = "path:/srv/sana";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -171,8 +176,15 @@
           ./modules/nixos/wireguard/saotome+kazooie/saotome.nix
           ./modules/nixos/slskd.nix
           ./modules/nixos/navidrome.nix
-          ./modules/nixos/websites.nix
-          ./modules/nixos/sana-backend.nix
+            #./modules/nixos/websites.nix
+
+          inputs.sana-website.nixosModules.default
+          {
+            services.sana = {
+              enable = true;
+              envFile = /etc/doppel-moe.env;
+            };
+          }
 
           home-manager.nixosModules.home-manager
           {
