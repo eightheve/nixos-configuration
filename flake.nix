@@ -27,8 +27,7 @@
     };
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     sana-website = {
-      #url = "github:eightheve/sana.doppel.moe";
-      url = "path:/srv/sana";
+      url = "github:eightheve/sana.doppel.moe";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

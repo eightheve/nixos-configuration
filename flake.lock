@@ -297,14 +297,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1766302328,
-        "narHash": "sha256-Sin/8BCx6GbbdjkDE7DgxmBNXm+N+cRGj6Okb5yzW+c=",
-        "path": "/srv/sana",
-        "type": "path"
+        "lastModified": 1766302644,
+        "narHash": "sha256-CieHFBFoUd1uOs7Expnm7pUfHLiooAEbnQ/ZbC08MAg=",
+        "owner": "eightheve",
+        "repo": "sana.doppel.moe",
+        "rev": "14098fe514682e5e8849da11cedb7bf86b42b752",
+        "type": "github"
       },
       "original": {
-        "path": "/srv/sana",
-        "type": "path"
+        "owner": "eightheve",
+        "repo": "sana.doppel.moe",
+        "type": "github"
       }
     },
     "systems": {
