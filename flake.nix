@@ -132,16 +132,6 @@
         ];
       };
 
-      BANJO = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./common.nix
-          ./hosts/BANJO
-
-          ./users/sana
-        ];
-      };
-
       KAZOOIE = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -204,7 +194,6 @@
         ];
       };
 
-
       HAMUKO = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -234,7 +223,7 @@
         system = "x86_64-linux";
         modules = [
           ./common.nix
-          ./hosts/HAMUKO
+          ./hosts/NYANKO
 
           ./users/sana
 
@@ -255,11 +244,11 @@
         ];
       };
 
-      TOMOCCHI = nixpkgs.lib.nixosSystem {
+      HIME = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./common.nix
-          ./hosts/HAMUKO
+          ./hosts/HIME
 
           ./users/sana
 
@@ -277,6 +266,16 @@
               };
             };
           }
+        ];
+      };
+
+      BANJO = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./common.nix
+          ./hosts/BANJO
+
+          ./users/sana
         ];
       };
     };
