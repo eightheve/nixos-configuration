@@ -7,7 +7,7 @@
 
   boot.loader.grub = {
     enable = true;
-    device = "wwn-0x55cd2e404b4d96b1";
+    device = "/dev/disk/by-id/wwn-0x55cd2e404b4d96b1";
   };
 
   networking = {
