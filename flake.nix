@@ -210,7 +210,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {
-                import = [
+                imports = [
                   ./users/sana/home.nix
                 ];
               };
@@ -235,7 +235,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {
-                import = [
+                imports = [
                   ./users/sana/home.nix
                 ];
               };
@@ -260,7 +260,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {
-                import = [
+                imports = [
                   ./users/sana/home.nix
                 ];
               };
