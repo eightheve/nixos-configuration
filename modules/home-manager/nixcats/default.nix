@@ -44,8 +44,10 @@ in {
             nixd
             alejandra
           ];
-          clojure = with pkgs; [
+          lisp = with pkgs; [
             clojure-lsp
+            clojure
+            mitscheme
           ];
         };
 
@@ -62,6 +64,7 @@ in {
             which-key-nvim
             lualine-nvim
             nvim-treesitter.withAllGrammars
+            nvim-paredit
             
             mini-nvim
             vim-startuptime
@@ -81,6 +84,7 @@ in {
         optionalPlugins = {
           lua = with pkgs.vimPlugins; [
             lazydev-nvim
+            conjure
           ];
         };
 
@@ -139,8 +143,7 @@ in {
             general = true;
             lua = true;
             nix = true;
-            clojure = true;
-            go = false;
+            lisp = true;
           };
           # anything else to pass and grab in lua with `nixCats.extra`
           extra = {
