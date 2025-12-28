@@ -12,15 +12,18 @@
 
   networking = {
     hostName = "SAOTOME";
+    networkmanager.enable = false;
 
-    networkmanager.enable = true;
     interfaces.eno3 = {
+      useDHCP = false;
       ipv4.addresses = [ {
         address = "192.168.1.10";
         prefixLength = 24;
       } ];
-      useDHCP = false;
     };
+
+    defaultGateway = "192.168.1.1";
+    nameservers = [ "8.8.8.8" "1.1.1.1" ];
   };
 
   time.timeZone = "America/New_York";
