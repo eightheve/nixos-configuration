@@ -161,6 +161,7 @@
           ./hosts/SAOTOME
 
           ./users/sana
+          ./users/cyanobacteria
 
           {
             nixpkgs.overlays = [
@@ -195,8 +196,16 @@
               users.sana = {
                 imports = [
                   ./users/sana/home.nix
+
                   ./modules/home-manager/nixcats
                   ./modules/home-manager/beets.nix
+                ];
+              };
+              users.cyanobacteria = {
+                imports = [
+                  ./users/cyanobacteria/home.nix
+
+                  ./modules/home-manager/nixcats
                 ];
               };
             };
