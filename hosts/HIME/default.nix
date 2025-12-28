@@ -7,14 +7,14 @@
 
   boot.loader.grub = {
     enable = true;
-    device = "CHANGE-THIS";
+    device = "/dev/disk/by-id/wwn-0x55cd2e404b4d7cc5";
   };
 
   networking = {
     hostName = "HIME";
     networkmanager.enable = false;
 
-    interfaces.eno3 = {
+    interfaces.eno1 = {
       useDHCP = false;
       ipv4.addresses = [ {
         address = "192.168.1.40";
