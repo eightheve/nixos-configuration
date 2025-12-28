@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   nix = {
@@ -18,7 +18,7 @@
 
   security.sudo.wheelNeedsPassword = false;
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = lib.mkDefault true;
   networking.firewall.allowedTCPPorts = [ 22 2222 ];
 
   networking.firewall = {

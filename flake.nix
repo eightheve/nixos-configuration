@@ -132,16 +132,6 @@
         ];
       };
 
-      BANJO = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./common.nix
-          ./hosts/BANJO
-
-          ./users/sana
-        ];
-      };
-
       KAZOOIE = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -213,7 +203,6 @@
         ];
       };
 
-
       HAMUKO = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -230,7 +219,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {
-                import = [
+                imports = [
                   ./users/sana/home.nix
                 ];
               };
@@ -243,7 +232,7 @@
         system = "x86_64-linux";
         modules = [
           ./common.nix
-          ./hosts/HAMUKO
+          ./hosts/NYANKO
 
           ./users/sana
 
@@ -255,7 +244,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {
-                import = [
+                imports = [
                   ./users/sana/home.nix
                 ];
               };
@@ -264,11 +253,11 @@
         ];
       };
 
-      TOMOCCHI = nixpkgs.lib.nixosSystem {
+      HIME = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./common.nix
-          ./hosts/HAMUKO
+          ./hosts/HIME
 
           ./users/sana
 
@@ -280,12 +269,22 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users.sana = {
-                import = [
+                imports = [
                   ./users/sana/home.nix
                 ];
               };
             };
           }
+        ];
+      };
+
+      BANJO = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./common.nix
+          ./hosts/BANJO
+
+          ./users/sana
         ];
       };
     };
