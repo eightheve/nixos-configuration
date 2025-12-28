@@ -14,7 +14,7 @@
     hostName = "NYANKO";
     networkmanager.enable = false;
 
-    interfaces.eno3 = {
+    interfaces.eno1 = {
       useDHCP = false;
       ipv4.addresses = [ {
         address = "192.168.1.30";
