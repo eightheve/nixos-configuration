@@ -100,6 +100,8 @@
     yubico-piv-tool
     yubikey-manager
 
+    tmux
+
     cryptsetup
     mailutils
     fastfetch
