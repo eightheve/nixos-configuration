@@ -80,7 +80,9 @@
     gwe
     lm_sensors
     pulseaudio
-    ];
+
+    gamescope
+  ];
 
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
