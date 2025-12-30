@@ -105,6 +105,7 @@
     cryptsetup
     mailutils
     fastfetch
+    btop
     wget
     curl
     git
