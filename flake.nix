@@ -57,6 +57,7 @@
           ./modules/nixos/lain-grub
           ./modules/nixos/hyprland.nix
           ./modules/nixos/sound.nix
+          ./modules/nixos/remote-build-user.nix
 
           ./users/sana
 
@@ -166,6 +167,7 @@
           ./modules/nixos/wireguard/saotome+kazooie/saotome.nix
           ./modules/nixos/slskd.nix
           ./modules/nixos/navidrome.nix
+          ./modules/nixos/remote-build-user.nix
             #./modules/nixos/websites.nix
 
           inputs.sana-website.nixosModules.default
@@ -209,6 +211,8 @@
           ./common.nix
           ./hosts/HAMUKO
 
+          ./modules/remote-builder.nix
+
           ./users/sana
 
           home-manager.nixosModules.home-manager
@@ -234,6 +238,8 @@
           ./common.nix
           ./hosts/NYANKO
 
+          ./modules/remote-builder.nix
+
           ./users/sana
 
           home-manager.nixosModules.home-manager
@@ -258,6 +264,8 @@
         modules = [
           ./common.nix
           ./hosts/HIME
+
+          ./modules/remote-builder.nix
 
           ./users/sana
 
