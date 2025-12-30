@@ -211,7 +211,7 @@
           ./common.nix
           ./hosts/HAMUKO
 
-          ./modules/remote-builder.nix
+          ./modules/nixos/remote-builder.nix
 
           ./users/sana
 
@@ -238,7 +238,7 @@
           ./common.nix
           ./hosts/NYANKO
 
-          ./modules/remote-builder.nix
+          ./modules/nixos/remote-builder.nix
 
           ./users/sana
 
@@ -265,7 +265,7 @@
           ./common.nix
           ./hosts/HIME
 
-          ./modules/remote-builder.nix
+          ./modules/nixos/remote-builder.nix
 
           ./users/sana
 
