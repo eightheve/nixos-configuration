@@ -30,6 +30,10 @@
       url = "github:eightheve/sana.doppel.moe";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sana-doppel-moe = {
+      url = "github:eightheve/sana-website";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -170,11 +174,12 @@
           ./modules/nixos/remote-build-user.nix
             #./modules/nixos/websites.nix
 
-          inputs.sana-website.nixosModules.default
+          inputs.sana-doppel-moe.nixosModules.default
           {
-            services.sana = {
+            services.sana-moe = {
               enable = true;
-              envFile = /etc/doppel-moe.env;
+              envFile = /etc/sana-doppel-moe.env;
+              localPort = 3200;
             };
           }
 
