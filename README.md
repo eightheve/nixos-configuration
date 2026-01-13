@@ -1,3 +1,7 @@
+## ARCHIVED
+
+Current version is available to view at https://github.com/eightheve/nixos
+
 # EighthEve's NixOS Configuration(s)
 
 Multi-host NixOS flake configuration. Will forever be a work in progress, but is especially WIP right now.
